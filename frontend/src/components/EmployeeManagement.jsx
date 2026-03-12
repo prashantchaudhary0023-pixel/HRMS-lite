@@ -235,40 +235,83 @@ function EmployeeManagement() {
       )}
 
       {!loading && employees.length > 0 && (
+        // <div className="table-container">
+        //   <table className="data-table">
+        //     <thead>
+        //       <tr>
+        //         <th>Employee ID</th>
+        //         <th>Full Name</th>
+        //         <th>Email</th>
+        //         <th>Department</th>
+        //         <th>Actions</th>
+        //       </tr>
+        //     </thead>
+        //     <tbody>
+        //       {employees.map((employee) => (
+        //         <tr key={employee.id}>
+        //           <td>
+        //             <span className="badge">{employee.employee_id}</span>
+        //           </td>
+        //           <td>{employee.full_name}</td>
+        //           <td>{employee.email}</td>
+        //           <td>{employee.department}</td>
+        //           <td>
+        //             <button
+        //               className="btn btn-danger btn-sm"
+        //               onClick={() => handleDelete(employee.id)}
+        //               disabled={loading}
+        //             >
+        //               🗑 Delete
+        //             </button>
+        //           </td>
+        //         </tr>
+        //       ))}
+        //     </tbody>
+        //   </table>
+        // </div>
+
         <div className="table-container">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Employee ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Department</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {employees.map((employee) => (
-                <tr key={employee.id}>
-                  <td>
-                    <span className="badge">{employee.employee_id}</span>
-                  </td>
-                  <td>{employee.full_name}</td>
-                  <td>{employee.email}</td>
-                  <td>{employee.department}</td>
-                  <td>
-                    <button
-                      className="btn btn-danger btn-sm"
-                      onClick={() => handleDelete(employee.id)}
-                      disabled={loading}
-                    >
-                      🗑 Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+  <table className="data-table">
+    <thead>
+      <tr>
+        <th>Employee ID</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {employees.length === 0 ? (
+        <tr>
+          <td colSpan="5" style={{ textAlign: 'center', padding: '1rem' }}>
+            No employees yet
+          </td>
+        </tr>
+      ) : (
+        employees.map((employee) => (
+          <tr key={employee.id}>
+            <td>
+              <span className="badge">{employee.employee_id}</span>
+            </td>
+            <td>{employee.full_name}</td>
+            <td>{employee.email}</td>
+            <td>{employee.department}</td>
+            <td>
+              <button
+                className="btn btn-danger btn-sm"
+                onClick={() => handleDelete(employee.id)}
+                disabled={loading}
+              >
+                🗑 Delete
+              </button>
+            </td>
+          </tr>
+        ))
+      )}
+    </tbody>
+  </table>
+</div>
       )}
     </div>
   );
