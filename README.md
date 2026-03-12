@@ -35,21 +35,21 @@ A lightweight, full-stack web application for managing employees and tracking da
 ## 🛠 Tech Stack
 
 ### Backend
-- **Framework**: Django 4.2
+- **Framework**: Django 5.2.6
 - **API**: Django REST Framework
 - **Database**: SQLite (Development) / PostgreSQL (Production)
 - **CORS**: django-cors-headers
 - **Validation**: Django validators & custom validation
 
 ### Frontend
-- **Framework**: React 18
+- **Framework**: React 19.2.4
 - **Build Tool**: Vite
 - **HTTP Client**: Axios
 - **Styling**: Custom CSS (No external UI libraries)
 
 ### Deployment
-- **Frontend**: Vercel / Netlify
-- **Backend**: Render / Railway
+- **Frontend**: Vercel 
+- **Backend**: Render 
 - **Database**: PostgreSQL (Production)
 
 ## 📦 Installation & Setup
@@ -160,7 +160,7 @@ A lightweight, full-stack web application for managing employees and tracking da
 3. **Build command**: `pip install -r requirements.txt`
 4. **Start command**: `gunicorn hrms_project.wsgi:application`
 
-### Frontend Deployment (Vercel/Netlify)
+### Frontend Deployment (Vercel)
 
 1. **Create a new project**
 2. **Set environment variables**:
@@ -241,18 +241,9 @@ hrms-lite/
 - [ ] View total present days
 - [ ] View attendance for different employees
 
-## 🐛 Known Issues
-
-None at the moment. Please report issues via GitHub Issues.
-
-## 📧 Contact
-
-For questions or feedback, please create an issue in the GitHub repository.
-
-## 📄 License
-
+**Final:**
 This project is created as part of a coding assignment.
 
 ---
 
-**Built with ❤️ using React, Django, and PostgreSQL**
+
