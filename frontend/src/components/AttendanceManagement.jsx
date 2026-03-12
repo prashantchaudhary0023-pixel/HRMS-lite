@@ -96,15 +96,6 @@ function AttendanceManagement() {
       });
       setShowForm(false);
       fetchAttendance();
-      // const response = await attendanceAPI.create(formData); // save new record
-      // const newRecord = response.data; // make sure this is the created record
-      // setAttendanceRecords((prev) => [...prev, newRecord]); // append to table
-      // setFormData({
-      //   employee: '',
-      //   date: new Date().toISOString().split('T')[0],
-      //   status: 'present',
-      // });
-      // setShowForm(false);
     } catch (err) {
       const errorMessage = err.response?.data?.error ||
                           Object.values(err.response?.data || {}).flat().join(', ') ||
@@ -290,7 +281,7 @@ function AttendanceManagement() {
             </tbody>
           </table>
         </div>
-      )} */
+      )} 
       
       
     </div>
