@@ -88,14 +88,23 @@ function AttendanceManagement() {
     setLoading(true);
     setError(null);
     try {
-      await attendanceAPI.create(formData);
+      // await attendanceAPI.create(formData);
+      // setFormData({
+      //   employee: '',
+      //   date: new Date().toISOString().split('T')[0],
+      //   status: 'present',
+      // });
+      // setShowForm(false);
+      // fetchAttendance();
+      const response = await attendanceAPI.create(formData); // save new record
+      const newRecord = response.data; // make sure this is the created record
+      setAttendanceRecords((prev) => [...prev, newRecord]); // append to table
       setFormData({
         employee: '',
         date: new Date().toISOString().split('T')[0],
         status: 'present',
       });
       setShowForm(false);
-      fetchAttendance();
     } catch (err) {
       const errorMessage = err.response?.data?.error ||
                           Object.values(err.response?.data || {}).flat().join(', ') ||
@@ -246,7 +255,7 @@ function AttendanceManagement() {
         </div>
       )}
 
-      {!loading && attendanceRecords.length > 0 && (
+      {/* {!loading && attendanceRecords.length > 0 && (
         <div className="table-container">
           <table className="data-table">
             <thead>
@@ -281,7 +290,55 @@ function AttendanceManagement() {
             </tbody>
           </table>
         </div>
-      )}
+      )} */
+      !loading && (
+  <div className="table-container">
+    <table className="data-table">
+      <thead>
+        <tr>
+          <th>Employee ID</th>
+          <th>Employee Name</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Total Present Days</th>
+        </tr>
+      </thead>
+      <tbody>
+        {attendanceRecords.length === 0 ? (
+          <tr>
+            <td colSpan="5" style={{ textAlign: 'center', padding: '1rem' }}>
+              No records yet
+            </td>
+          </tr>
+        ) : (
+          attendanceRecords.map((record) => (
+            <tr key={record.id}>
+              <td>
+                <span className="badge">{record.employee_id_display}</span>
+              </td>
+              <td>{record.employee_name}</td>
+              <td>{new Date(record.date).toLocaleDateString()}</td>
+              <td>
+                <span className={`status-badge status-${record.status}`}>
+                  {record.status === 'present' ? '✓' : '✕'} {record.status}
+                </span>
+              </td>
+              <td>
+                <span className="present-count">
+                  {getTotalPresentDays(record.employee)} days
+                </span>
+              </td>
+            </tr>
+          ))
+        )}
+      </tbody>
+    </table>
+  </div>
+)
+      
+      }
+      
+      
     </div>
   );
 }
