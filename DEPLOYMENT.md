@@ -56,26 +56,6 @@ This guide provides step-by-step instructions for deploying the HRMS Lite applic
 ### Step 4: Test Backend API
 Visit: `https://your-app-name.onrender.com/api/employees/`
 
-## Alternative Backend: Railway.app
-
-### Step 1: Install Railway CLI (Optional)
-```bash
-npm install -g @railway/cli
-```
-
-### Step 2: Deploy on Railway
-1. Go to [Railway](https://railway.app/)
-2. Click "Start a New Project"
-3. Select "Deploy from GitHub repo"
-4. Select your repository
-5. Add PostgreSQL database:
-   - Click "New" → "Database" → "PostgreSQL"
-6. Configure environment variables (same as Render)
-7. Set:
-   - **Root Directory**: `backend`
-   - **Build Command**: `pip install -r requirements.txt && python manage.py migrate`
-   - **Start Command**: `gunicorn hrms_project.wsgi:application --bind 0.0.0.0:$PORT`
-
 ## Frontend Deployment (Vercel)
 
 ### Step 1: Prepare Frontend
@@ -102,24 +82,6 @@ npm install -g @railway/cli
 6. Click "Deploy"
 7. Note your frontend URL: `https://your-app-name.vercel.app`
 
-## Alternative Frontend: Netlify
-
-### Step 1: Deploy on Netlify
-1. Go to [Netlify](https://app.netlify.com/)
-2. Click "Add new site" → "Import an existing project"
-3. Connect to GitHub and select repository
-4. Configure:
-   - **Base directory**: `frontend`
-   - **Build command**: `npm run build`
-   - **Publish directory**: `frontend/dist`
-
-5. Add Environment Variables:
-   ```
-   VITE_API_URL=https://your-backend-url.onrender.com/api
-   ```
-
-6. Click "Deploy site"
-
 ## Post-Deployment Checklist
 
 ### Backend
@@ -144,8 +106,6 @@ npm install -g @railway/cli
 - **Solution**: Verify database credentials in environment variables
 - Check that `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, and `DB_PASSWORD` are correct
 
-**Problem**: Static files not loading
-- **Solution**: Run `python manage.py collectstatic` in build command
 
 **Problem**: CORS errors
 - **Solution**: Ensure `CORS_ALLOW_ALL_ORIGINS=True` or add specific frontend URL to `CORS_ALLOWED_ORIGINS`
@@ -172,55 +132,15 @@ npm install -g @railway/cli
 1. Push changes to GitHub
 2. Vercel/Netlify will automatically redeploy
 
-## Cost Considerations
-
-### Free Tier Limits
-- **Render**:
-  - 750 hours/month for web services
-  - Services spin down after 15 minutes of inactivity
-  - First request after spin-down may take 30-60 seconds
-
-- **Railway**:
-  - $5 credit/month
-  - Pay as you go after credit exhausted
-
-- **Vercel**:
-  - Unlimited bandwidth for personal projects
-  - 100GB bandwidth/month for free tier
-
-- **Netlify**:
-  - 100GB bandwidth/month
-  - 300 build minutes/month
-
 ## Monitoring
 
 ### Backend Monitoring
 - Check Render logs for errors
 - Monitor database connections
-- Set up uptime monitoring (UptimeRobot, etc.)
 
 ### Frontend Monitoring
 - Use Vercel Analytics
-- Monitor API call success rates
 - Check browser console for errors
 
-## Security Best Practices
 
-1. ✅ Never commit `.env` files
-2. ✅ Use strong `SECRET_KEY` in production
-3. ✅ Set `DEBUG=False` in production
-4. ✅ Use HTTPS for all communications
-5. ✅ Regularly update dependencies
-6. ✅ Monitor logs for suspicious activity
 
-## Support
-
-For deployment issues:
-1. Check platform documentation
-2. Review application logs
-3. Verify environment variables
-4. Test API endpoints independently
-
----
-
-**Happy Deploying! 🚀**
