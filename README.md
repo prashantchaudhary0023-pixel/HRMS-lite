@@ -4,9 +4,9 @@ A lightweight, full-stack web application for managing employees and tracking da
 
 ## 🚀 Live Demo
 
-- **Frontend**: [To be deployed]
-- **Backend API**: [To be deployed]
-- **GitHub Repository**: [Repository URL]
+- **Frontend**: [https://hrms-lite-isdka49nc-prashantchaudhary0023-pixels-projects.vercel.app/]
+- **Backend API**: [https://hrms-lite-backend-zpfn.onrender.com/api/]
+- **GitHub Repository**: [https://github.com/prashantchaudhary0023-pixel/HRMS-lite]
 
 ## 📋 Features
 
