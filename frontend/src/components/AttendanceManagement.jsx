@@ -44,6 +44,7 @@ function AttendanceManagement() {
     try {
       const response = await attendanceAPI.getAll(params);
       setAttendanceRecords(response.data.results || response.data);
+      console.log('Attendance Records:', records);
     } catch (err) {
       setError('Failed to load attendance records. Please try again.');
       console.error('Error fetching attendance:', err);
